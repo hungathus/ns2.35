@@ -65,7 +65,7 @@ proc create-dumbbell-topology {bneckbw delay} {
     for {set i 0} {$i < $opt(nsrc)} {incr i} {
 #        $ns duplex-link $s($i) $gw 10Mb 1ms DropTail
 #        $ns duplex-link $gw $d $bneckbw $delay DropTail
-        $ns duplex-link $s($i) $gw $accessrate($i) $accessdelay($i) $opt(gw)
+        $ns duplex-link $s($i) $gw [expr $i + 1]Mb $accessdelay($i) $opt(gw)
         $ns queue-limit $s($i) $gw $opt(maxq)
         $ns queue-limit $gw $s($i) $opt(maxq)
         if { $opt(gw) == "XCP" } {
